@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutterexamples/Navigator_Test/pushNamed.dart';
+import 'package:flutterexamples/Navigator_Test/push_pop.dart';
 import 'package:flutterexamples/snack_bar_page.dart';
 
 void main() => runApp(MyApp());
@@ -12,7 +14,16 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+
+      // Navitaion - pushNamed
+      initialRoute: '/',
+      routes: {
+        '/' : (context) => HomePage(),
+        '/a' : (context) => PushNamedA(),
+        '/b' : (context) => PushNamedB(),
+        '/c' : (context) => PushNamedC(),
+      },
+      //home: HomePage(),
     );
   }
 }
@@ -24,6 +35,8 @@ class HomePage extends StatelessWidget {
 
   final List _pages = [
     SnackBarPage(),
+    PushPopPage(),
+    PushNamedA(),
   ];
 
   @override
@@ -84,6 +97,22 @@ class HomePage extends StatelessWidget {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => _pages[0]));
                 }),
+            Divider(thickness: 3.0,),
+            ListTile(
+                leading: Icon(Icons.navigation),
+                title: Text('Navigator - PushPop'),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => _pages[1]));
+                }),
+            ListTile(
+                leading: Icon(Icons.navigation),
+                title: Text('Navigator - PushNamed'),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => _pages[2]));
+                }),
+            Divider(thickness: 3.0,),
             ListTile(
                 leading: Icon(Icons.close),
                 title: Text('Close drawer'),
