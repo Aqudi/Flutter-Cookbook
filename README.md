@@ -2,7 +2,23 @@
 
 Examples for flutter apps.
 
+## Drawer
+### main.dart
+
+1. Drawer 구성 - 헤더, 아이템  
+    ![drawer](assets/md/drawer.png)
+2. GlobalKey 로 Scaffold 제어
+    ```dart
+   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey();
+    ...
+    RaisedButton(
+      child: Text('Tap to open drawer'),
+      onPressed: () => _scaffoldKey.currentState.openDrawer(),
+    ) 
+   ```
+
 ## Snack bar
+### snack_bar_page.dart
 Document link : [Display a snackbar](https://flutter.dev/docs/cookbook/design/snackbars)
 
 1.  Scaffold.of(context) method  
