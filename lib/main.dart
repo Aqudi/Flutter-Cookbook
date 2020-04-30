@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
   // <ScaffoldState> is needed
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey();
 
-  List _pages = [
+  final List _pages = [
     SnackBarPage(),
   ];
 
