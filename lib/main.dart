@@ -59,7 +59,8 @@ class HomePage extends StatelessWidget {
             ListTile(
                 title: Text('SnackBar'),
                 onTap: () {
-                  Navigator.push(context, _pages[0]);
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => _pages[0]));
                 }),
             ListTile(
                 title: Text('Close drawer'),
