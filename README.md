@@ -110,7 +110,7 @@ Document link : [Display a snackbar](https://flutter.dev/docs/cookbook/design/sn
     Flutter Toast Library 사용 [링크](https://pub.dev/packages/fluttertoast)
 
 ## Navigator
-### Navigation_Test folder
+### Navigation folder
 1. push, pop 메소드
     push 메소드 (화면 전환)
     ```dart
