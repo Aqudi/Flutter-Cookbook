@@ -83,29 +83,29 @@ Document link : [Display a snackbar](https://flutter.dev/docs/cookbook/design/sn
     커스텀 Widget 을 만들어준다. 
     이렇게 할 시 Widget 의 build 메소드를 오버라이드할 때 Context 를 새롭게 
     만드므로 위의 Builder 위젯을 사용한 것과 동일한 효과가 난다.
-    ```dart
-    class MySnackBar extends StatelessWidget {
-      @override
-      Widget build(BuildContext context) {
-        return Center(
-          child: RaisedButton(
-            child: Text('Show me'),
-            onPressed: () {
-              Scaffold.of(context).showSnackBar(SnackBar(
-                content: Text(
-                  'Snack Bar with custom widget!!',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.white),
-                ),
-                backgroundColor: Colors.teal,
-                duration: Duration(microseconds: 1000),
-              ));
-            },
-          ),
-        );
+      ```dart
+      class MySnackBar extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {
+          return Center(
+            child: RaisedButton(
+              child: Text('Show me'),
+              onPressed: () {
+                Scaffold.of(context).showSnackBar(SnackBar(
+                  content: Text(
+                    'Snack Bar with custom widget!!',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  backgroundColor: Colors.teal,
+                  duration: Duration(microseconds: 1000),
+                ));
+              },
+            ),
+          );
+        }
       }
-    }
-    ```
+      ```
     + **해결법3**
     Flutter Toast Library 사용 [링크](https://pub.dev/packages/fluttertoast)
 
@@ -149,7 +149,6 @@ Document link : [Display a snackbar](https://flutter.dev/docs/cookbook/design/sn
             initialRoute: '/',
             routes: {
               '/' : (context) => HomePage(),
-              '/a' : (context) => PushNamedA(),
               '/b' : (context) => PushNamedB(),
               '/c' : (context) => PushNamedC(),
             },
@@ -174,3 +173,100 @@ Document link : [Display a snackbar](https://flutter.dev/docs/cookbook/design/sn
         },
       )
     ```
+3. pushNamed Arguments 넘겨주기
+    + Route 부분은 방법1, 방법2 동일
+      ``` dart
+        Navigator.pushNamed(
+          context, PassArgumentsPage.routeName,
+          arguments: Arguments('title', 'message')
+      ```
+    + 방법1: Extract Arguments  
+      main.dart의 MaterialApp(
+        routes: 내용을 수정해준다.
+      )
+      ``` dart
+      routes: {
+        ...
+        // Navigator.pushNamed
+        ExtractArgumentsPage.routeName: (context) => ExtractArgumentsPage()
+      },   
+      ```
+      
+      아래 메소드를 이용하여 context에서 arguments 를 추출한다. ModalRoute.of(contex).settings.arguments
+      ```dart
+      class ExtractArgumentsPage extends StatelessWidget {
+        static const routeName = '/extractArguments';
+
+        @override
+        Widget build(BuildContext context) {
+          // context 에서 arguments 추출
+          final Arguments args = ModalRoute.of(context).settings.arguments;
+
+          return Scaffold(
+            appBar: AppBar(
+              title: Text(args.title),
+            ),
+            body: Center(
+              child: Text(args.message),
+            ),
+          );
+        }
+      }
+      ```
+    + 방법2: Pass Arguments
+        main.dart의 MaterialApp(
+          onGenerateRoute: 에 route 할 때 취할 동작을 적어준다.
+        )
+        ``` dart
+        onGenerateRoute: (settings) {
+        /*
+        // settings type : RouteSettings
+        
+        const RouteSettings({
+          String name, // 라우터 이름
+          bool isInitialRoute: false, // 초기 라우터여부
+          Object arguments // 인자들
+        })
+        */
+        if(settings.name == PassArgumentsPage.routeName) {
+          final Arguments args = settings.arguments;
+
+          return MaterialPageRoute(
+            builder: (context) {
+              return PassArgumentsPage(
+                title: args.title,
+                message: args.message,
+              );
+            }
+          );
+        }
+      },  
+        ```
+        생성자로 arguments 를 받아준다.
+        ```dart
+        class PassArgumentsPage extends StatelessWidget {
+          static const routeName = '/passArguments';
+
+          final String title;
+          final String message;
+
+          // 인자로 arguments 넘겨받기
+          const PassArgumentsPage({
+            Key key,
+            @required this.title,
+            @required this.message,
+          }) : super(key: key);
+
+          @override
+          Widget build(BuildContext context) {
+            return Scaffold(
+              appBar: AppBar(
+                title: Text(title),
+              ),
+              body: Center(
+                child: Text(message),
+              ),
+            );
+          }
+        }
+        ```

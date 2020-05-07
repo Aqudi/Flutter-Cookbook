@@ -5,7 +5,7 @@ class PushNamedWithArguments extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Navigator.pushNamed Test'),
+          title: Text('PushNamed with arguments'),
           backgroundColor: Colors.green,
         ),
         body: Column(
@@ -21,15 +21,15 @@ class PushNamedWithArguments extends StatelessWidget {
                 child: Text('Navigate to screen that extracts arguments'),
                 color: Colors.blue,
                 onPressed: () => Navigator.pushNamed(
-                    context, PassArgumentPage.routeName,
-                    arguments: Arguments('Extract Arguments Screen',
+                    context, ExtractArgumentsPage.routeName,
+                    arguments: Arguments('Extract Arguments Page',
                         'This message is extracted in the build method.'))),
             RaisedButton(
                 child: Text('Navigate to a named that accepts arguments'),
                 color: Colors.blue,
                 onPressed: () => Navigator.pushNamed(
-                    context, PassArgumentPage.routeName,
-                    arguments: Arguments('Hello argumnets',
+                    context, PassArgumentsPage.routeName,
+                    arguments: Arguments('Pass Arguments Page',
                         'This message is extracted in the onGenerateRoute function'))),
           ],
         ));
@@ -41,6 +41,7 @@ class ExtractArgumentsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // context 에서 arguments 추출
     final Arguments args = ModalRoute.of(context).settings.arguments;
 
     return Scaffold(
@@ -54,13 +55,14 @@ class ExtractArgumentsPage extends StatelessWidget {
   }
 }
 
-class PassArgumentPage extends StatelessWidget {
+class PassArgumentsPage extends StatelessWidget {
   static const routeName = '/passArguments';
 
   final String title;
   final String message;
 
-  const PassArgumentPage({
+  // 인자로 arguments 넘겨받기
+  const PassArgumentsPage({
     Key key,
     @required this.title,
     @required this.message,

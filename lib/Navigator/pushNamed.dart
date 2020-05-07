@@ -6,7 +6,7 @@ class PushNamedPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('PushNamedA'),
+        title: Text('PushNamedPage'),
       ),
       body: Center(
         child: Column(
