@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutterexamples/Navigator/pushNamed.dart';
-import 'package:flutterexamples/Navigator/pushNamed_with_arguments.dart';
-import 'package:flutterexamples/Navigator/push_pop.dart';
-import 'package:flutterexamples/snack_bar_page.dart';
+import 'package:flutterexamples/pages/Navigator/pushNamed.dart';
+import 'package:flutterexamples/pages/Navigator/pushNamed_with_arguments.dart';
+import 'package:flutterexamples/pages/Navigator/push_pop.dart';
+import 'package:flutterexamples/pages/snack_bar_page.dart';
 
 void main() => runApp(MyApp());
 
