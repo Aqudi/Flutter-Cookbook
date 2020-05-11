@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterexamples/pages/MyAnimatedContainer.dart';
 import 'package:flutterexamples/pages/MyAnimatedOpacity.dart';
 import 'package:flutterexamples/pages/MyOrientationBuilder.dart';
+import 'package:flutterexamples/pages/MyTabController.dart';
 import 'package:flutterexamples/pages/Navigator/pushNamed.dart';
 import 'package:flutterexamples/pages/Navigator/pushNamed_with_arguments.dart';
 import 'package:flutterexamples/pages/Navigator/push_pop.dart';
@@ -72,7 +73,7 @@ class HomePage extends StatelessWidget {
     MyAnimatedContainer(),
     MyAnimatedOpacity(),
     MyOrientationBuilder(),
-
+    MyTabController(),
   ];
 
   @override
@@ -163,22 +164,29 @@ class HomePage extends StatelessWidget {
             ListTile(
               title: Text('AnimatedContainer'),
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => _pages[4]));
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => _pages[4]));
               },
             ),
             ListTile(
               title: Text('AnimatedOpacity'),
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => _pages[5]));
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => _pages[5]));
               },
             ),
             ListTile(
               title: Text('OrientationBuilder'),
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => _pages[6]));
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => _pages[6]));
+              },
+            ),
+            ListTile(
+              title: Text('TabController'),
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => _pages[7]));
               },
             ),
             ListTile(
