@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterexamples/pages/MyAnimatedContainer.dart';
 import 'package:flutterexamples/pages/MyAnimatedOpacity.dart';
+import 'package:flutterexamples/pages/MyOrientationBuilder.dart';
 import 'package:flutterexamples/pages/Navigator/pushNamed.dart';
 import 'package:flutterexamples/pages/Navigator/pushNamed_with_arguments.dart';
 import 'package:flutterexamples/pages/Navigator/push_pop.dart';
@@ -70,6 +71,8 @@ class HomePage extends StatelessWidget {
     PushNamedWithArguments(),
     MyAnimatedContainer(),
     MyAnimatedOpacity(),
+    MyOrientationBuilder(),
+
   ];
 
   @override
@@ -169,6 +172,13 @@ class HomePage extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => _pages[5]));
+              },
+            ),
+            ListTile(
+              title: Text('OrientationBuilder'),
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => _pages[6]));
               },
             ),
             ListTile(
