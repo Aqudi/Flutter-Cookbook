@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterexamples/pages/MyAnimatedContainer.dart';
 import 'package:flutterexamples/pages/Navigator/pushNamed.dart';
 import 'package:flutterexamples/pages/Navigator/pushNamed_with_arguments.dart';
 import 'package:flutterexamples/pages/Navigator/push_pop.dart';
@@ -27,7 +28,6 @@ class MyApp extends StatelessWidget {
         ExtractArgumentsPage.routeName: (context) => ExtractArgumentsPage()
       },
 
-
       // pushNamed Arguments 전달 방법2: onGenerateRoute 에서 Route 할 때 추출
       // ignore: missing_return
       onGenerateRoute: (settings) {
@@ -40,17 +40,15 @@ class MyApp extends StatelessWidget {
           Object arguments // 인자들
         })
         */
-        if(settings.name == PassArgumentsPage.routeName) {
+        if (settings.name == PassArgumentsPage.routeName) {
           final Arguments args = settings.arguments;
 
-          return MaterialPageRoute(
-            builder: (context) {
-              return PassArgumentsPage(
-                title: args.title,
-                message: args.message,
-              );
-            }
-          );
+          return MaterialPageRoute(builder: (context) {
+            return PassArgumentsPage(
+              title: args.title,
+              message: args.message,
+            );
+          });
         }
       },
 
@@ -69,6 +67,8 @@ class HomePage extends StatelessWidget {
     PushPopPage(),
     PushNamedPage(),
     PushNamedWithArguments(),
+    MyAnimatedContainer(),
+
   ];
 
   @override
@@ -93,76 +93,83 @@ class HomePage extends StatelessWidget {
         ),
         drawer: Drawer(
             child: ListView(
-              padding: EdgeInsets.zero,
-              children: <Widget>[
-                // It looks like play store drawer menu
-                UserAccountsDrawerHeader(
-                  accountName: Text('태정 허'),
-                  accountEmail: Text('Aqudi:Github.com'),
-                  currentAccountPicture: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        'https://images.unsplash.com/photo-1588102023869-d23e5daa0c45?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'),
-                    backgroundColor: Colors.white,
-                  ),
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            // It looks like play store drawer menu
+            UserAccountsDrawerHeader(
+              accountName: Text('태정 허'),
+              accountEmail: Text('Aqudi:Github.com'),
+              currentAccountPicture: CircleAvatar(
+                backgroundImage: NetworkImage(
+                    'https://images.unsplash.com/photo-1588102023869-d23e5daa0c45?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'),
+                backgroundColor: Colors.white,
+              ),
 
-                  // It looks like when i have multiple google accounts on play store
-                  otherAccountsPictures: <Widget>[
-                    CircleAvatar(
-                      backgroundImage: NetworkImage(
-                          'https://images.unsplash.com/photo-1588104203354-1d14a1971335?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'),
-                      backgroundColor: Colors.white,
-                    ),
-                    CircleAvatar(
-                      backgroundImage: NetworkImage(
-                          'https://images.unsplash.com/photo-1588008239255-774ff927d529?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'),
-                      backgroundColor: Colors.white,
-                    ),
-                  ],
-                  decoration: BoxDecoration(
-                    color: Colors.blue,
-                  ),
+              // It looks like when i have multiple google accounts on play store
+              otherAccountsPictures: <Widget>[
+                CircleAvatar(
+                  backgroundImage: NetworkImage(
+                      'https://images.unsplash.com/photo-1588104203354-1d14a1971335?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'),
+                  backgroundColor: Colors.white,
                 ),
-                ListTile(
-                    leading: Icon(Icons.adjust),
-                    title: Text('SnackBar'),
-                    onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => _pages[0]));
-                    }),
-                Divider(
-                  thickness: 3.0,
+                CircleAvatar(
+                  backgroundImage: NetworkImage(
+                      'https://images.unsplash.com/photo-1588008239255-774ff927d529?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'),
+                  backgroundColor: Colors.white,
                 ),
-                ListTile(
-                    leading: Icon(Icons.navigation),
-                    title: Text('Navigator - PushPop'),
-                    onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => _pages[1]));
-                    }),
-                ListTile(
-                    leading: Icon(Icons.navigation),
-                    title: Text('Navigator - PushNamed'),
-                    onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => _pages[2]));
-                    }),
-                ListTile(
-                    leading: Icon(Icons.navigation),
-                    title: Text('Navigator - PushNamed with arguments'),
-                    onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => _pages[3]));
-                    }),
-                Divider(
-                  thickness: 3.0,
-                ),
-                ListTile(
-                    leading: Icon(Icons.close),
-                    title: Text('Close drawer'),
-                    onTap: () {
-                      Navigator.of(context).pop();
-                    })
               ],
-            )));
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+            ),
+            ListTile(
+                leading: Icon(Icons.adjust),
+                title: Text('SnackBar'),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => _pages[0]));
+                }),
+            Divider(
+              thickness: 3.0,
+            ),
+            ListTile(
+                leading: Icon(Icons.navigation),
+                title: Text('Navigator - PushPop'),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => _pages[1]));
+                }),
+            ListTile(
+                leading: Icon(Icons.navigation),
+                title: Text('Navigator - PushNamed'),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => _pages[2]));
+                }),
+            ListTile(
+                leading: Icon(Icons.navigation),
+                title: Text('Navigator - PushNamed with arguments'),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => _pages[3]));
+                }),
+            Divider(
+              thickness: 3.0,
+            ),
+            ListTile(
+              title: Text('AnimatedContainer'),
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => _pages[4]));
+              },
+            ),
+            ListTile(
+                leading: Icon(Icons.close),
+                title: Text('Close drawer'),
+                onTap: () {
+                  Navigator.of(context).pop();
+                })
+          ],
+        )));
   }
 }
