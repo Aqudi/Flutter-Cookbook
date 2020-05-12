@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutterexamples/pages/MyAnimatedContainer.dart';
 import 'package:flutterexamples/pages/MyAnimatedOpacity.dart';
+import 'package:flutterexamples/pages/MyFormValidation.dart';
 import 'package:flutterexamples/pages/MyOrientationBuilder.dart';
 import 'package:flutterexamples/pages/MyTabController.dart';
 import 'package:flutterexamples/pages/Navigator/pushNamed.dart';
 import 'package:flutterexamples/pages/Navigator/pushNamed_with_arguments.dart';
 import 'package:flutterexamples/pages/Navigator/push_pop.dart';
-import 'package:flutterexamples/pages/snack_bar_page.dart';
+import 'package:flutterexamples/pages/MySnackBar.dart';
 
 void main() => runApp(MyApp());
 
@@ -66,7 +67,7 @@ class HomePage extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey();
 
   final List _pages = [
-    SnackBarPage(),
+    MySnackBar(),
     PushPopPage(),
     PushNamedPage(),
     PushNamedWithArguments(),
@@ -74,6 +75,7 @@ class HomePage extends StatelessWidget {
     MyAnimatedOpacity(),
     MyOrientationBuilder(),
     MyTabController(),
+    MyFormValidation(),
   ];
 
   @override
@@ -187,7 +189,13 @@ class HomePage extends StatelessWidget {
               onTap: () {
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (context) => _pages[7]));
-              },
+              },),
+              ListTile(
+                title: Text('Form Validation'),
+                onTap: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) => _pages[8]));
+                },
             ),
             ListTile(
                 leading: Icon(Icons.close),
