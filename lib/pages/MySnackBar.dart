@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 // Document: https://flutter.dev/docs/cookbook/design/snackbars
-class SnackBarPage extends StatefulWidget {
+class MySnackBar extends StatefulWidget {
   @override
-  _SnackBarPageState createState() => _SnackBarPageState();
+  _MySnackBarState createState() => _MySnackBarState();
 }
 
-class _SnackBarPageState extends State<SnackBarPage> {
+class _MySnackBarState extends State<MySnackBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +39,7 @@ class _SnackBarPageState extends State<SnackBarPage> {
             }),
 
             // 2. Custom SnackBar widget
-            MySnackBar('Custom SnackBar widget'),
+            CustomSnackBar('Custom SnackBar widget'),
 
             // 3. SnackBar with Flutter Toast library
             FlatButton(
@@ -54,10 +54,10 @@ class _SnackBarPageState extends State<SnackBarPage> {
   }
 }
 
-class MySnackBar extends StatelessWidget {
+class CustomSnackBar extends StatelessWidget {
   final String _title;
 
-  MySnackBar(this._title);
+  CustomSnackBar(this._title);
 
   @override
   Widget build(BuildContext context) {
