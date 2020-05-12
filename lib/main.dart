@@ -67,15 +67,15 @@ class HomePage extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey();
 
   final List _pages = [
-    MySnackBar(),
-    PushPopPage(),
-    PushNamedPage(),
-    PushNamedWithArguments(),
-    MyAnimatedContainer(),
-    MyAnimatedOpacity(),
-    MyOrientationBuilder(),
-    MyTabController(),
-    MyFormValidation(),
+    [MySnackBar(), 'SnackBar'],
+    [PushPopPage(), 'Divider'],
+    [PushNamedPage(), 'Navigator - PushPop'],
+    [PushNamedWithArguments(), 'Navigator - PushNamed'],
+    [MyAnimatedContainer(), 'Navigator - PushNamed with arguments'],
+    [MyAnimatedOpacity(), 'Divider'],
+    [MyOrientationBuilder(), 'AnimatedContainer'],
+    [MyTabController(), 'AnimatedOpacity'],
+    [MyFormValidation(), 'OrientationBuilder'],
   ];
 
   @override
@@ -101,109 +101,69 @@ class HomePage extends StatelessWidget {
         drawer: Drawer(
             child: ListView(
           padding: EdgeInsets.zero,
-          children: <Widget>[
-            // It looks like play store drawer menu
-            UserAccountsDrawerHeader(
-              accountName: Text('태정 허'),
-              accountEmail: Text('Aqudi:Github.com'),
-              currentAccountPicture: CircleAvatar(
-                backgroundImage: NetworkImage(
-                    'https://images.unsplash.com/photo-1588102023869-d23e5daa0c45?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'),
-                backgroundColor: Colors.white,
-              ),
-
-              // It looks like when i have multiple google accounts on play store
-              otherAccountsPictures: <Widget>[
-                CircleAvatar(
-                  backgroundImage: NetworkImage(
-                      'https://images.unsplash.com/photo-1588104203354-1d14a1971335?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'),
-                  backgroundColor: Colors.white,
-                ),
-                CircleAvatar(
-                  backgroundImage: NetworkImage(
-                      'https://images.unsplash.com/photo-1588008239255-774ff927d529?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'),
-                  backgroundColor: Colors.white,
-                ),
-              ],
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-            ),
-            ListTile(
-                leading: Icon(Icons.adjust),
-                title: Text('SnackBar'),
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => _pages[0]));
-                }),
-            Divider(
-              thickness: 3.0,
-            ),
-            ListTile(
-                leading: Icon(Icons.navigation),
-                title: Text('Navigator - PushPop'),
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => _pages[1]));
-                }),
-            ListTile(
-                leading: Icon(Icons.navigation),
-                title: Text('Navigator - PushNamed'),
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => _pages[2]));
-                }),
-            ListTile(
-                leading: Icon(Icons.navigation),
-                title: Text('Navigator - PushNamed with arguments'),
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => _pages[3]));
-                }),
-            Divider(
-              thickness: 3.0,
-            ),
-            ListTile(
-              title: Text('AnimatedContainer'),
-              onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => _pages[4]));
-              },
-            ),
-            ListTile(
-              title: Text('AnimatedOpacity'),
-              onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => _pages[5]));
-              },
-            ),
-            ListTile(
-              title: Text('OrientationBuilder'),
-              onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => _pages[6]));
-              },
-            ),
-            ListTile(
-              title: Text('TabController'),
-              onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => _pages[7]));
-              },),
-              ListTile(
-                title: Text('Form Validation'),
-                onTap: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) => _pages[8]));
-                },
-            ),
-            ListTile(
-                leading: Icon(Icons.close),
-                title: Text('Close drawer'),
-                onTap: () {
-                  Navigator.of(context).pop();
-                })
-          ],
+          children: _buildDrawer(context),
         )));
+  }
+
+  _buildDrawer(context) {
+    List<Widget> itemList = [
+      // It looks like play store drawer menu
+      UserAccountsDrawerHeader(
+        accountName: Text('태정 허'),
+        accountEmail: Text('Aqudi:Github.com'),
+        currentAccountPicture: CircleAvatar(
+          backgroundImage: NetworkImage(
+              'https://images.unsplash.com/photo-1588102023869-d23e5daa0c45?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'),
+          backgroundColor: Colors.white,
+        ),
+
+        // It looks like when i have multiple google accounts on play store
+        otherAccountsPictures: <Widget>[
+          CircleAvatar(
+            backgroundImage: NetworkImage(
+                'https://images.unsplash.com/photo-1588104203354-1d14a1971335?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'),
+            backgroundColor: Colors.white,
+          ),
+          CircleAvatar(
+            backgroundImage: NetworkImage(
+                'https://images.unsplash.com/photo-1588008239255-774ff927d529?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'),
+            backgroundColor: Colors.white,
+          ),
+        ],
+        decoration: BoxDecoration(
+          color: Colors.blue,
+        ),
+      ),
+      ListTile(
+          leading: Icon(Icons.close),
+          title: Text('Close drawer'),
+          onTap: () {
+            Navigator.of(context).pop();
+          })
+    ];
+    List<Widget> menuList = List.generate(_pages.length,
+        (index) => MyListTile(_pages[index][0], _pages[index][1]));
+    itemList.addAll(menuList);
+    return itemList;
+  }
+}
+
+class MyListTile extends StatelessWidget {
+  final _name;
+  final _page;
+
+  MyListTile(this._page, this._name);
+
+  @override
+  Widget build(BuildContext context) {
+    return (_name != "Divider")
+        ? ListTile(
+            title: Text(_name),
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => _page));
+            },
+          )
+        : Divider(thickness: 3.0);
   }
 }
