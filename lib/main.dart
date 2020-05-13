@@ -3,6 +3,7 @@ import 'package:flutterexamples/pages/MyAnimatedContainer.dart';
 import 'package:flutterexamples/pages/MyAnimatedOpacity.dart';
 import 'package:flutterexamples/pages/MyFormValidation.dart';
 import 'package:flutterexamples/pages/MyOrientationBuilder.dart';
+import 'package:flutterexamples/pages/MySwipeToDismiss.dart';
 import 'package:flutterexamples/pages/MyTabController.dart';
 import 'package:flutterexamples/pages/Navigator/pushNamed.dart';
 import 'package:flutterexamples/pages/Navigator/pushNamed_with_arguments.dart';
@@ -76,6 +77,7 @@ class HomePage extends StatelessWidget {
     [MyOrientationBuilder(), 'AnimatedContainer'],
     [MyTabController(), 'AnimatedOpacity'],
     [MyFormValidation(), 'OrientationBuilder'],
+    [MySwipeToDismiss(), 'Dismissible SwipeToDismiss'],
   ];
 
   @override
